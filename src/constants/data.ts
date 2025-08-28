@@ -107,6 +107,110 @@ export const SOCIAL_LINKS: SocialLink[] = [
   }
 ]
 
+// Planners Data
+export const PLANNERS_DATA = [
+  {
+    id: 'money-planner',
+    title: 'MONEY PLANNER',
+    description: 'Organiza tus finanzas personales con claridad y control total',
+    image: '/img/img_planner.png',
+    comingSoon: false
+  },
+  {
+    id: 'budget-planner',
+    title: 'BUDGET PLANNER',
+    description: 'Planifica y controla tus gastos mensuales de manera efectiva',
+    image: '/img/img_planner.png',
+    comingSoon: true
+  },
+  {
+    id: 'investment-planner',
+    title: 'INVESTMENT PLANNER',
+    description: 'Gestiona tu portafolio de inversiones de manera inteligente',
+    image: '/img/img_planner.png',
+    comingSoon: true
+  },
+  {
+    id: 'savings-planner',
+    title: 'SAVINGS PLANNER',
+    description: 'Alcanza tus metas de ahorro con estrategias efectivas',
+    image: '/img/img_planner.png',
+    comingSoon: true
+  },
+  {
+    id: 'debt-planner',
+    title: 'DEBT PLANNER',
+    description: 'Elimina tus deudas de forma sistemática y eficiente',
+    image: '/img/img_planner.png',
+    comingSoon: true
+  },
+  {
+    id: 'retirement-planner',
+    title: 'RETIREMENT PLANNER',
+    description: 'Planifica tu jubilación con estrategias a largo plazo',
+    image: '/img/img_planner.png',
+    comingSoon: true
+  }
+]
+
+// Articles Data
+export const ARTICLES_DATA = [
+  {
+    id: 'dinero-y-pareja',
+    title: 'DINERO Y PAREJA',
+    description: 'Cómo manejar las finanzas en pareja y construir un futuro económico juntos',
+    image: '/img/img_dinero_y_pareja.png',
+    category: 'Relaciones Financieras',
+    readTime: '5 min',
+    comingSoon: false
+  },
+  {
+    id: 'maximiza-tu-riqueza',
+    title: 'MAXIMIZA TU RIQUEZA',
+    description: 'Estrategias avanzadas para hacer crecer tu patrimonio de manera inteligente',
+    image: '/img/img_maximixa_tu_riqueza.png',
+    category: 'Inversiones',
+    readTime: '8 min',
+    comingSoon: false
+  },
+  {
+    id: 'jubilacion-inteligente',
+    title: 'JUBILACIÓN INTELIGENTE',
+    description: 'Planifica tu retiro con estrategias financieras efectivas y seguras',
+    image: '/img/img_prep_jubilacion.png',
+    category: 'Planificación',
+    readTime: '10 min',
+    comingSoon: false
+  },
+  {
+    id: 'tendencias-financieras',
+    title: 'TENDENCIAS FINANCIERAS 2025',
+    description: 'Las últimas tendencias que están transformando el mundo de las finanzas',
+    image: '/img/img_news.png',
+    category: 'Actualidad',
+    readTime: '6 min',
+    comingSoon: true
+  },
+  {
+    id: 'inversion-sostenible',
+    title: 'INVERSIÓN SOSTENIBLE',
+    description: 'Cómo invertir de manera responsable y generar impacto positivo',
+    image: '/img/img_dinero_verde.png',
+    category: 'Sostenibilidad',
+    readTime: '7 min',
+    comingSoon: true
+  },
+  {
+    id: 'finanzas-digitales',
+    title: 'FINANZAS DIGITALES',
+    description: 'El futuro de las finanzas en la era digital y las criptomonedas',
+    image: '/img/img_crypto_101.png',
+    category: 'Tecnología',
+    readTime: '9 min',
+    comingSoon: true
+  }
+]
+
 export const SITE_CONFIG = {
   name: 'CoraWeb',
   description: 'Actualidad que conecta contigo',

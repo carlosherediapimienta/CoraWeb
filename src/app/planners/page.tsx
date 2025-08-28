@@ -1,206 +1,167 @@
-import { Section, SectionHeader } from '@/components/ui'
-import { ArrowRightIcon, DownloadIcon } from '@heroicons/react/24/outline'
+'use client'
+
+import { ArrowRightIcon } from '@heroicons/react/24/outline'
+import { PLANNERS_DATA } from '@/constants/data'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function PlannersPage() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <Section background="accent" container={false}>
-        <div className="container-custom text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Planners
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
-            Herramientas prácticas y plantillas descargables para organizar tu vida financiera y profesional
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#plantillas" className="btn-primary bg-white text-[#4c0f2e] hover:bg-gray-100">
-              Ver plantillas
-            </a>
-            <a href="#herramientas" className="btn-secondary border-white text-white hover:bg-white hover:text-[#4c0f2e]">
-              Explorar herramientas
-            </a>
-          </div>
+      {/* Header Principal Responsive */}
+      <header className="bg-cora-primary relative overflow-hidden min-h-screen">
+        {/* Imagen de fondo optimizada */}
+        <div className="absolute inset-0">
+          <Image
+            src="/img/img_header_planner.png"
+            alt=""
+            fill
+            className="object-cover object-center w-full h-full"
+            priority
+            fetchPriority="high"
+            decoding="async"
+            sizes="100vw"
+            quality={85}
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
-      </Section>
-
-      {/* Plantillas Destacadas */}
-      <Section background="gray">
-        <SectionHeader
-          title="Plantillas Destacadas"
-          description="Descarga plantillas profesionales para organizar tus finanzas y proyectos"
-        />
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Plantilla 1 */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 border border-[#e0c3b5]">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-xl text-[#2d161e] mb-3">
-              Presupuesto Mensual
-            </h3>
-            <p className="text-[#b09287] text-sm mb-4">
-              Plantilla completa para planificar y controlar tus gastos mensuales de manera efectiva.
+        {/* Contenido del header */}
+        <div className="relative z-10 container-custom h-screen flex items-center justify-center">
+          <div className="text-center text-cora-accent">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light mb-4 sm:mb-6 tracking-[0.1em] sm:tracking-[0.2em] uppercase leading-tight">
+              MONEY
+            </h1>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-normal tracking-[0.05em] sm:tracking-[0.1em] uppercase leading-tight">
+              PLANNERS
+            </h2>
+            <p className="mt-6 sm:mt-8 md:mt-10 text-lg sm:text-xl md:text-2xl max-w-4xl mx-auto opacity-90">
+              Organiza tu dinero, visualiza tu progreso y alcanza tus metas financieras
             </p>
-            <div className="flex items-center justify-between">
-              <span className="text-[#4c0f2e] font-semibold">Excel</span>
-              <DownloadIcon className="w-5 h-5 text-[#b09287]" />
-            </div>
-          </div>
-
-          {/* Plantilla 2 */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 border border-[#e0c3b5]">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-xl text-[#2d161e] mb-3">
-              Tracking de Inversiones
-            </h3>
-            <p className="text-[#b09287] text-sm mb-4">
-              Sistema para monitorear el rendimiento de tus inversiones y portafolio.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-[#4c0f2e] font-semibold">Google Sheets</span>
-              <DownloadIcon className="w-5 h-5 text-[#b09287]" />
-            </div>
-          </div>
-
-          {/* Plantilla 3 */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 border border-[#e0c3b5]">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-xl text-[#2d161e] mb-3">
-              Plan de Negocio
-            </h3>
-            <p className="text-[#b09287] text-sm mb-4">
-              Plantilla profesional para crear planes de negocio completos y estructurados.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-[#4c0f2e] font-semibold">Word</span>
-              <DownloadIcon className="w-5 h-5 text-[#b09287]" />
-            </div>
           </div>
         </div>
-      </Section>
+      </header>
 
-      {/* Herramientas Interactivas */}
-      <Section background="white">
-        <SectionHeader
-          title="Herramientas Interactivas"
-          description="Aplicaciones web y móviles para gestionar tus finanzas en tiempo real"
-        />
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-[#ebe2db] rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-[#2d161e] mb-4">
-              Budget Tracker Pro
-            </h3>
-            <p className="text-[#b09287] mb-6">
-              Aplicación web para el seguimiento completo de ingresos, gastos y ahorros.
+      {/* Sección de Planners - Grid Responsive */}
+      <section className="bg-cora-bg py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="container-custom">
+          {/* Título */}
+          <div className="text-center mb-16 sm:mb-20 md:mb-24 lg:mb-32">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-normal text-cora-text mb-6 sm:mb-8 leading-tight">
+              Nuestros Planners
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-cora-text/80 max-w-3xl mx-auto">
+              Herramientas esenciales para organizar y optimizar tu vida financiera
             </p>
-            <ul className="space-y-2 text-[#2d161e] mb-6">
-              <li>• Categorización automática</li>
-              <li>• Reportes visuales</li>
-              <li>• Metas de ahorro</li>
-              <li>• Sincronización multiplataforma</li>
-            </ul>
-            <button className="btn-primary">
-              Acceder Ahora
-            </button>
           </div>
+          
+          {/* Grid de planners responsive */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 cards-grid">
+            {PLANNERS_DATA.map((planner, index) => (
+              <div key={planner.id} className={`group bg-white rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
+                index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''
+              }`}>
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={planner.image}
+                    alt={`${planner.title} - ${planner.description}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes={index === 2 ? "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  {planner.comingSoon && (
+                    <div className="absolute top-4 right-4 bg-cora-primary text-cora-accent px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium shadow-lg">
+                      PRÓXIMAMENTE
+                    </div>
+                  )}
+                </div>
+                <div className="p-6 sm:p-8 text-center">
+                  <h3 className="text-xl sm:text-2xl font-normal text-cora-text mb-4">{planner.title}</h3>
+                  <p className="text-cora-text-secondary text-sm sm:text-base mb-6">
+                    {planner.description}
+                  </p>
+                  {planner.comingSoon ? (
+                    <span className="inline-flex items-center text-cora-text-muted font-medium">
+                      Disponible pronto
+                      <ArrowRightIcon className="ml-2 h-4 w-4" />
+                    </span>
+                  ) : (
+                    <Link 
+                      href="#" 
+                      className="inline-flex items-center text-cora-primary hover:text-cora-primary/80 font-medium transition-colors duration-200"
+                    >
+                      Descargar ahora
+                      <ArrowRightIcon className="ml-2 h-4 w-4" />
+                    </Link>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <div className="bg-[#ebe2db] rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-[#2d161e] mb-4">
-              Investment Portfolio Manager
-            </h3>
-            <p className="text-[#b09287] mb-6">
-              Gestor avanzado de portafolios con análisis de riesgo y rendimiento.
+      {/* Footer CORA Invest */}
+      <footer className="bg-cora-primary py-12 sm:py-16 md:py-20">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 sm:gap-16 md:gap-20 items-center">
+            {/* Contacto */}
+            <div className="text-center lg:text-left">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-cora-accent uppercase mb-4 sm:mb-6 md:mb-8">
+                CONTÁCTANOS
+              </h3>
+              <div className="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4 md:space-x-5">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cora-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <a 
+                  href="mailto:thecorainvest@gmail.com" 
+                  className="text-cora-accent hover:text-white transition-colors duration-200 text-base sm:text-lg md:text-xl"
+                >
+                  thecorainvest@gmail.com
+                </a>
+              </div>
+            </div>
+            
+            {/* Logo CORA Invest */}
+            <div className="flex justify-center">
+              <Image
+                src="/img/logo/logo_2.png"
+                alt="CORA Invest Logo"
+                width={180}
+                height={180}
+                className="w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48"
+                loading="lazy"
+                sizes="(max-width: 640px) 144px, (max-width: 768px) 160px, (max-width: 1024px) 176px, 192px"
+              />
+            </div>
+            
+            {/* Redes Sociales */}
+            <div className="text-center lg:text-right">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-cora-accent uppercase mb-4 sm:mb-6 md:mb-8">
+                SÍGUENOS
+              </h3>
+              <div className="flex items-center justify-center lg:justify-end space-x-3 sm:space-x-4 md:space-x-5">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cora-accent" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span className="text-cora-accent text-base sm:text-lg md:text-xl">
+                  ¡Menciona tu experiencia!
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Copyright */}
+          <div className="border-t border-cora-accent/20 mt-12 sm:mt-16 pt-8 text-center">
+            <p className="text-cora-accent/80 text-sm sm:text-base">
+              © 2025 CORA Invest. Todos los derechos reservados. Empoderando mujeres hacia la libertad financiera.
             </p>
-            <ul className="space-y-2 text-[#2d161e] mb-6">
-              <li>• Seguimiento en tiempo real</li>
-              <li>• Análisis de diversificación</li>
-              <li>• Alertas personalizadas</li>
-              <li>• Integración con brokers</li>
-            </ul>
-            <button className="btn-primary">
-              Acceder Ahora
-            </button>
           </div>
         </div>
-      </Section>
-
-      {/* Categorías de Plantillas */}
-      <Section background="gray">
-        <SectionHeader
-          title="Categorías de Plantillas"
-          description="Organiza tus descargas por tipo y propósito"
-        />
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mx-auto mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-[#2d161e] mb-2">Finanzas</h3>
-            <p className="text-[#b09287] text-sm">Presupuestos, inversiones, impuestos</p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mx-auto mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-[#2d161e] mb-2">Negocios</h3>
-            <p className="text-[#b09287] text-sm">Planes, estrategias, marketing</p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mx-auto mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-[#2d161e] mb-2">Productividad</h3>
-            <p className="text-[#b09287] text-sm">Organización, planificación, metas</p>
-          </div>
-
-          <div className="text-center">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mx-auto mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-[#2d161e] mb-2">Emprendimiento</h3>
-            <p className="text-[#b09287] text-sm">Startups, innovación, crecimiento</p>
-          </div>
-        </div>
-      </Section>
-
-      {/* CTA */}
-      <Section background="accent">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            ¿Necesitas una plantilla específica?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Si no encuentras lo que buscas, contáctanos y crearemos una plantilla personalizada para ti.
-          </p>
-          <a href="/contact" className="btn-primary bg-white text-[#4c0f2e] hover:bg-gray-100">
-            Solicitar Plantilla
-          </a>
-        </div>
-      </Section>
+      </footer>
     </div>
   )
 }

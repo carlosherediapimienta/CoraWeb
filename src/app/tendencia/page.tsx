@@ -1,227 +1,225 @@
-import { Section, SectionHeader } from '@/components/ui'
-import { ArrowRightIcon, TrendingUpIcon } from '@heroicons/react/24/outline'
+'use client'
+
+import { ArrowRightIcon, ClockIcon, TagIcon } from '@heroicons/react/24/outline'
+import { ARTICLES_DATA } from '@/constants/data'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function TendenciaPage() {
+  const featuredArticles = ARTICLES_DATA.filter(article => !article.comingSoon)
+  const upcomingArticles = ARTICLES_DATA.filter(article => article.comingSoon)
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <Section background="accent" container={false}>
-        <div className="container-custom text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Tendencia
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
-            Mantente al día con las últimas tendencias en finanzas, tecnología y mercados emergentes
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#tendencias" className="btn-primary bg-white text-[#4c0f2e] hover:bg-gray-100">
-              Ver tendencias
-            </a>
-            <a href="#mercados" className="btn-secondary border-white text-white hover:bg-white hover:text-[#4c0f2e]">
-              Análisis de mercados
-            </a>
-          </div>
+      {/* Header Principal Responsive */}
+      <header className="bg-cora-primary relative overflow-hidden min-h-screen">
+        {/* Imagen de fondo optimizada */}
+        <div className="absolute inset-0">
+          <Image
+            src="/img/img_news.png"
+            alt=""
+            fill
+            className="object-cover object-center w-full h-full"
+            priority
+            fetchPriority="high"
+            decoding="async"
+            sizes="100vw"
+            quality={85}
+          />
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
-      </Section>
-
-      {/* Tendencias Principales */}
-      <Section background="gray">
-        <SectionHeader
-          title="Tendencias Principales"
-          description="Las tendencias que están transformando el mundo financiero y tecnológico"
-        />
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Tendencia 1 */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 border border-[#e0c3b5]">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mb-4">
-              <TrendingUpIcon className="w-8 h-8" />
-            </div>
-            <h3 className="font-semibold text-xl text-[#2d161e] mb-3">
-              Fintech Revolucionario
-            </h3>
-            <p className="text-[#b09287] text-sm mb-4">
-              Las tecnologías financieras están democratizando el acceso a servicios bancarios y de inversión.
+        {/* Contenido del header */}
+        <div className="relative z-10 container-custom h-screen flex items-center justify-center">
+          <div className="text-center text-cora-accent">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light mb-4 sm:mb-6 tracking-[0.1em] sm:tracking-[0.2em] uppercase leading-tight">
+              ACTUALIDAD
+            </h1>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-normal tracking-[0.05em] sm:tracking-[0.1em] uppercase leading-tight">
+              FINANCIERA
+            </h2>
+            <p className="mt-6 sm:mt-8 md:mt-10 text-lg sm:text-xl md:text-2xl max-w-4xl mx-auto opacity-90">
+              Mantente al día con las últimas tendencias y noticias del mundo financiero
             </p>
-            <div className="flex items-center justify-between">
-              <span className="text-[#4c0f2e] font-semibold">+45% crecimiento</span>
-              <ArrowRightIcon className="w-5 h-5 text-[#b09287]" />
-            </div>
-          </div>
-
-          {/* Tendencia 2 */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 border border-[#e0c3b5]">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-xl text-[#2d161e] mb-3">
-              IA en Finanzas
-            </h3>
-            <p className="text-[#b09287] text-sm mb-4">
-              La inteligencia artificial está transformando la gestión de riesgos y la toma de decisiones financieras.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-[#4c0f2e] font-semibold">+60% adopción</span>
-              <ArrowRightIcon className="w-5 h-5 text-[#b09287]" />
-            </div>
-          </div>
-
-          {/* Tendencia 3 */}
-          <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-200 border border-[#e0c3b5]">
-            <div className="w-16 h-16 bg-[#4c0f2e]/10 rounded-xl flex items-center justify-center text-[#4c0f2e] mb-4">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-xl text-[#2d161e] mb-3">
-              Inversión Sostenible
-            </h3>
-            <p className="text-[#b09287] text-sm mb-4">
-              Los inversores están priorizando empresas con prácticas ESG y sostenibilidad.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-[#4c0f2e] font-semibold">+80% demanda</span>
-              <ArrowRightIcon className="w-5 h-5 text-[#b09287]" />
-            </div>
           </div>
         </div>
-      </Section>
+      </header>
 
-      {/* Análisis de Mercados */}
-      <Section background="white">
-        <SectionHeader
-          title="Análisis de Mercados"
-          description="Reportes detallados sobre el comportamiento de los mercados financieros"
-        />
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-[#ebe2db] rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-[#2d161e] mb-4">
-              Mercado de Criptomonedas
-            </h3>
-            <p className="text-[#b09287] mb-6">
-              Análisis completo del mercado crypto con tendencias, oportunidades y riesgos.
+      {/* Sección de Artículos Destacados - Grid Responsive */}
+      <section className="bg-cora-bg py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="container-custom">
+          {/* Título */}
+          <div className="text-center mb-16 sm:mb-20 md:mb-24 lg:mb-32">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-normal text-cora-text mb-6 sm:mb-8 leading-tight">
+              Artículos destacados
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-cora-text/80 max-w-3xl mx-auto">
+              Contenido relevante y actualizado sobre finanzas, inversiones y empoderamiento femenino
             </p>
-            <ul className="space-y-2 text-[#2d161e] mb-6">
-              <li>• Bitcoin y altcoins principales</li>
-              <li>• DeFi y NFTs</li>
-              <li>• Regulación y adopción</li>
-              <li>• Estrategias de inversión</li>
-            </ul>
-            <button className="btn-primary">
-              Leer Análisis
-            </button>
           </div>
-
-          <div className="bg-[#ebe2db] rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-[#2d161e] mb-4">
-              Mercados Tradicionales
-            </h3>
-            <p className="text-[#b09287] mb-6">
-              Análisis de acciones, bonos y commodities con perspectivas macroeconómicas.
-            </p>
-            <ul className="space-y-2 text-[#2d161e] mb-6">
-              <li>• S&P 500 y NASDAQ</li>
-              <li>• Bonos del Tesoro</li>
-              <li>• Oro y petróleo</li>
-              <li>• Indicadores económicos</li>
-            </ul>
-            <button className="btn-primary">
-              Leer Análisis
-            </button>
-          </div>
-        </div>
-      </Section>
-
-      {/* Reportes Semanales */}
-      <Section background="gray">
-        <SectionHeader
-          title="Reportes Semanales"
-          description="Resúmenes semanales de las tendencias más importantes"
-        />
-        
-        <div className="space-y-6">
-          <div className="bg-white rounded-2xl p-6 border border-[#e0c3b5]">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-[#2d161e]">
-                Reporte Semanal #24 - Fintech y Bancos Digitales
-              </h3>
-              <span className="text-[#b09287] text-sm">Hace 2 días</span>
-            </div>
-            <p className="text-[#b09287] mb-4">
-              Análisis de las nuevas tendencias en banca digital, incluyendo neobancos, criptobancos y la evolución de los servicios financieros tradicionales.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-[#4c0f2e] font-semibold">15 min de lectura</span>
-              <button className="text-[#4c0f2e] hover:text-[#4c0f2e]/80 font-medium">
-                Leer completo →
-              </button>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-2xl p-6 border border-[#e0c3b5]">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-[#2d161e]">
-                Reporte Semanal #23 - IA y Automatización Financiera
-              </h3>
-              <span className="text-[#b09287] text-sm">Hace 1 semana</span>
-            </div>
-            <p className="text-[#b09287] mb-4">
-              Cómo la inteligencia artificial está transformando la gestión de portafolios, detección de fraudes y análisis de riesgos en el sector financiero.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-[#4c0f2e] font-semibold">12 min de lectura</span>
-              <button className="text-[#4c0f2e] hover:text-[#4c0f2e]/80 font-medium">
-                Leer completo →
-              </button>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-2xl p-6 border border-[#e0c3b5]">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-[#2d161e]">
-                Reporte Semanal #22 - Sostenibilidad e Inversión ESG
-              </h3>
-              <span className="text-[#b09287] text-sm">Hace 2 semanas</span>
-            </div>
-            <p className="text-[#b09287] mb-4">
-              El crecimiento de la inversión sostenible y cómo los criterios ESG están influyendo en las decisiones de inversión institucionales y minoristas.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="text-[#4c0f2e] font-semibold">18 min de lectura</span>
-              <button className="text-[#4c0f2e] hover:text-[#4c0f2e]/80 font-medium">
-                Leer completo →
-              </button>
-            </div>
+          
+          {/* Grid de artículos destacados responsive */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 cards-grid">
+            {featuredArticles.map((article, index) => (
+              <div key={article.id} className={`group bg-white rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
+                index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''
+              }`}>
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={article.image}
+                    alt={`${article.title} - ${article.description}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes={index === 2 ? "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  <div className="absolute top-4 left-4 bg-cora-primary text-cora-accent px-3 py-1.5 rounded-full text-sm font-medium shadow-lg">
+                    {article.category}
+                  </div>
+                </div>
+                <div className="p-6 sm:p-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-1 text-cora-text-muted text-sm">
+                      <ClockIcon className="w-4 h-4" />
+                      <span>{article.readTime}</span>
+                    </div>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-normal text-cora-text mb-4">{article.title}</h3>
+                  <p className="text-cora-text-secondary text-sm sm:text-base mb-6">
+                    {article.description}
+                  </p>
+                  <Link 
+                    href="#" 
+                    className="inline-flex items-center text-cora-primary hover:text-cora-primary/80 font-medium transition-colors duration-200"
+                  >
+                    Leer artículo
+                    <ArrowRightIcon className="ml-2 h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Newsletter de Tendencias */}
-      <Section background="accent">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Mantente informado
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Suscríbete a nuestro newsletter semanal para recibir las últimas tendencias y análisis de mercados directamente en tu email.
-          </p>
-          <div className="max-w-md mx-auto">
-            <div className="flex gap-3">
-              <input
-                type="email"
-                placeholder="Tu email"
-                className="flex-1 px-4 py-3 rounded-2xl text-[#2d161e] placeholder-[#b09287] focus:outline-none focus:ring-2 focus:ring-white/50"
+      {/* Sección Próximos Artículos */}
+      <section className="bg-cora-primary py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="container-custom">
+          {/* Título */}
+          <div className="text-center mb-16 sm:mb-20 md:mb-24 lg:mb-32">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-normal text-cora-accent mb-6 sm:mb-8 leading-tight">
+              Próximamente
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-cora-accent/80 max-w-3xl mx-auto">
+              Nuevos artículos y análisis que estarán disponibles pronto
+            </p>
+          </div>
+          
+          {/* Grid de próximos artículos */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 cards-grid">
+            {upcomingArticles.map((article, index) => (
+              <div key={article.id} className={`group bg-cora-bg rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
+                index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''
+              }`}>
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={article.image}
+                    alt={`${article.title} - ${article.description}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes={index === 2 ? "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"}
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  <div className="absolute top-4 right-4 bg-cora-accent text-cora-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium shadow-lg">
+                    PRÓXIMAMENTE
+                  </div>
+                  <div className="absolute top-4 left-4 bg-cora-primary text-cora-accent px-3 py-1.5 rounded-full text-sm font-medium shadow-lg">
+                    {article.category}
+                  </div>
+                </div>
+                <div className="p-6 sm:p-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-1 text-cora-text-muted text-sm">
+                      <ClockIcon className="w-4 h-4" />
+                      <span>{article.readTime}</span>
+                    </div>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-normal text-cora-text mb-4">{article.title}</h3>
+                  <p className="text-cora-text-secondary text-sm sm:text-base mb-6">
+                    {article.description}
+                  </p>
+                  <span className="inline-flex items-center text-cora-text-muted font-medium">
+                    Disponible pronto
+                    <ArrowRightIcon className="ml-2 h-4 w-4" />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer CORA Invest */}
+      <footer className="bg-cora-primary py-12 sm:py-16 md:py-20">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 sm:gap-16 md:gap-20 items-center">
+            {/* Contacto */}
+            <div className="text-center lg:text-left">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-cora-accent uppercase mb-4 sm:mb-6 md:mb-8">
+                CONTÁCTANOS
+              </h3>
+              <div className="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4 md:space-x-5">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cora-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <a 
+                  href="mailto:thecorainvest@gmail.com" 
+                  className="text-cora-accent hover:text-white transition-colors duration-200 text-base sm:text-lg md:text-xl"
+                >
+                  thecorainvest@gmail.com
+                </a>
+              </div>
+            </div>
+            
+            {/* Logo CORA Invest */}
+            <div className="flex justify-center">
+              <Image
+                src="/img/logo/logo_2.png"
+                alt="CORA Invest Logo"
+                width={180}
+                height={180}
+                className="w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48"
+                loading="lazy"
+                sizes="(max-width: 640px) 144px, (max-width: 768px) 160px, (max-width: 1024px) 176px, 192px"
               />
-              <button className="bg-white text-[#4c0f2e] px-6 py-3 rounded-2xl font-semibold hover:bg-gray-100 transition-colors duration-200">
-                Suscribirse
-              </button>
+            </div>
+            
+            {/* Redes Sociales */}
+            <div className="text-center lg:text-right">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-cora-accent uppercase mb-4 sm:mb-6 md:mb-8">
+                SÍGUENOS
+              </h3>
+              <div className="flex items-center justify-center lg:justify-end space-x-3 sm:space-x-4 md:space-x-5">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cora-accent" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span className="text-cora-accent text-base sm:text-lg md:text-xl">
+                  ¡Menciona tu experiencia!
+                </span>
+              </div>
             </div>
           </div>
+          
+          {/* Copyright */}
+          <div className="border-t border-cora-accent/20 mt-12 sm:mt-16 pt-8 text-center">
+            <p className="text-cora-accent/80 text-sm sm:text-base">
+              © 2025 CORA Invest. Todos los derechos reservados. Empoderando mujeres hacia la libertad financiera.
+            </p>
+          </div>
         </div>
-      </Section>
+      </footer>
     </div>
   )
 }

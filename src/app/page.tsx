@@ -217,7 +217,7 @@ export default function Home() {
                 href="/planners" 
                 className="inline-flex items-center bg-cora-primary text-cora-bg px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-sm sm:text-base md:text-lg font-normal hover:bg-cora-text transition-all duration-200 group shadow-lg hover:shadow-xl"
               >
-                Ver más herramientas
+                Ver más planners
                 <ArrowRightIcon className="ml-2 sm:ml-2.5 md:ml-3 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
             </div>
