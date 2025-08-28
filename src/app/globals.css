@@ -1,10 +1,14 @@
+/* Importación optimizada de fuentes con font-display: swap */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=The+Seasons:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ===== SISTEMA DE TOKENS RESPONSIVOS ===== */
 :root {
+  /* Colores CORA */
   --color-primary: #4c0f2e;
   --color-secondary: #b09287;
   --color-accent: #e0c3b5;
@@ -16,42 +20,544 @@
   --color-border-light: #e0c3b5;
   --color-border-medium: #b09287;
   --color-border-dark: #4c0f2e;
+  
+  /* Espaciado fluido */
+  --space-1: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  --space-2: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+  --space-3: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+  --space-4: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --space-5: clamp(2rem, 1.6rem + 2vw, 3rem);
+  --space-6: clamp(3rem, 2.4rem + 3vw, 4rem);
+  --space-8: clamp(4rem, 3.2rem + 4vw, 6rem);
+  --space-10: clamp(5rem, 4rem + 5vw, 8rem);
+  --space-12: clamp(6rem, 4.8rem + 6vw, 10rem);
+  --space-16: clamp(8rem, 6.4rem + 8vw, 14rem);
+  --space-20: clamp(10rem, 8rem + 10vw, 18rem);
+  
+  /* Tipografía fluida */
+  --font-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --font-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --font-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --font-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --font-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --font-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.5rem);
+  --font-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
+  --font-5xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+  --font-6xl: clamp(3.75rem, 3rem + 3.75vw, 5rem);
+  --font-7xl: clamp(4.5rem, 3.5rem + 5vw, 6rem);
+  --font-8xl: clamp(6rem, 4.5rem + 7.5vw, 8rem);
+  
+  /* Breakpoints */
+  --breakpoint-xs: 360px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-2xl: 1920px;
+  --breakpoint-3xl: 2560px;
+  
+  /* Contenedores */
+  --container-max: 1200px;
+  --container-padding: clamp(1rem, 4vw, 2rem);
+  
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
 }
 
-* {
+/* ===== RESET Y BASE ===== */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-html,
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
   font-family: 'The Seasons', serif;
   background-color: var(--color-bg);
   color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height */
 }
 
+/* ===== TIPOGRAFÍA RESPONSIVA ===== */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'The Seasons', serif;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
 }
 
+h1 { font-size: var(--font-6xl); }
+h2 { font-size: var(--font-5xl); }
+h3 { font-size: var(--font-4xl); }
+h4 { font-size: var(--font-3xl); }
+h5 { font-size: var(--font-2xl); }
+h6 { font-size: var(--font-xl); }
+
+/* Estilos base para móviles - "Vive en libertad" con salto de línea */
+.hero-text h2 .libertad-line {
+  display: block;
+}
+
+/* Estilos base para móviles - "Vive en libertad" en una sola línea */
+.hero-text h2 br + :last-child {
+  display: inline;
+}
+
+p {
+  font-size: var(--font-base);
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+}
+
+/* ===== ENLACES Y BOTONES ===== */
 a {
   color: inherit;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
+a:hover {
+  color: var(--color-primary);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all 0.2s ease;
+}
+
+/* ===== IMÁGENES OPTIMIZADAS ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== FOCUS VISIBLE PARA ACCESIBILIDAD ===== */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ===== SCROLLBAR PERSONALIZADA ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* ===== UTILIDADES RESPONSIVAS ===== */
 @layer components {
+  /* Contenedor principal responsivo */
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    width: min(100% - (var(--container-padding) * 2), var(--container-max));
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
   }
   
+  /* Contenedor fluido */
+  .container-fluid {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+  }
+  
+  /* Botones primarios responsivos */
   .btn-primary {
-    @apply bg-[#4c0f2e] text-white px-6 py-3 rounded-2xl font-medium hover:bg-opacity-90 transition-all duration-200;
+    @apply bg-cora-primary text-white px-6 py-3 rounded-2xl font-medium;
+    @apply hover:bg-opacity-90 transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-cora-primary/50 focus:ring-offset-2;
+    @apply disabled:opacity-50 disabled:pointer-events-none;
+    min-height: 44px; /* Target táctil mínimo */
+    font-size: var(--font-base);
   }
   
+  /* Botones secundarios responsivos */
   .btn-secondary {
-    @apply bg-transparent border-2 border-[#4c0f2e] text-[#4c0f2e] px-6 py-3 rounded-2xl font-medium hover:bg-[#4c0f2e] hover:text-white transition-colors duration-200;
+    @apply bg-transparent border-2 border-cora-primary text-cora-primary px-6 py-3 rounded-2xl font-medium;
+    @apply hover:bg-cora-primary hover:text-white transition-colors duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-cora-primary/50 focus:ring-offset-2;
+    min-height: 44px;
+    font-size: var(--font-base);
+  }
+  
+  /* Secciones responsivas */
+  .section-responsive {
+    padding-block: var(--space-12);
+  }
+  
+  .section-responsive-sm {
+    padding-block: var(--space-8);
+  }
+  
+  .section-responsive-lg {
+    padding-block: var(--space-16);
+  }
+  
+  .section-responsive-xl {
+    padding-block: var(--space-20);
+  }
+}
+
+/* ===== UTILIDADES DE ACCESIBILIDAD ===== */
+@layer utilities {
+  /* Scroll suave para móviles */
+  .scroll-smooth-mobile {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Ocultar contenido visualmente pero mantenerlo para lectores de pantalla */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  /* Skip link para accesibilidad */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: var(--z-tooltip);
+  }
+  
+  .skip-link:focus {
+    top: 6px;
+  }
+  
+  /* Safe areas para iOS */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* ===== MEDIA QUERIES RESPONSIVAS ===== */
+@media (max-width: 359px) {
+  :root {
+    --container-padding: 0.75rem;
+  }
+}
+
+@media (min-width: 480px) {
+  :root {
+    --container-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 2rem;
+  }
+  
+  /* ===== CORRECCIONES ESPECÍFICAS PARA TABLET (md+) ===== */
+  
+  /* Contenedor fluido para tablet */
+  .container-custom {
+    width: min(100% - 3rem, 1400px);
+    margin-inline: auto;
+    padding-inline: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  
+  /* Container fluid para secciones de ancho completo */
+  .container-fluid {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    padding-inline: clamp(2rem, 5vw, 3rem);
+  }
+  
+  /* Container fluid optimizado para hero section */
+  .container-fluid.hero-container {
+    max-width: 1200px; /* Más estrecho para tablet */
+    margin-inline: auto;
+  }
+  
+  /* Hero section - Grid de 2 columnas en tablet */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.5rem, 2vw, 1rem);
+    align-items: center;
+  }
+  
+  /* Limitar ancho del texto en tablet */
+  .hero-text {
+    max-width: 56ch;
+  }
+  
+  .hero-title {
+    max-width: 14ch;
+  }
+  
+  /* Texto más grande en tablet para evitar separación excesiva */
+  .hero-text h2 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+  
+  /* Para tablets y desktops: "Vive en libertad" en una sola línea */
+  .hero-text h2 .libertad-line {
+    display: inline;
+  }
+  
+  /* Para tablets y desktops: "Vive en libertad" en una sola línea */
+  .hero-text h2 br + :last-child {
+    display: inline;
+  }
+  
+  .hero-text p {
+    font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+    line-height: 1.6;
+  }
+  
+  /* Cards grid - 2 columnas en tablet */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2.5rem, 5vw, 4rem);
+  }
+  
+  /* Imagen del hero - que ocupe toda la columna en tablet */
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+  }
+  
+  /* Imagen del hero - que ocupe todo el tamaño de la sección en tablet */
+  .hero-image .aspect-container {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 2.5rem;
+  }
+  
+  /* ===== CORRECCIONES ESPECÍFICAS PARA DESKTOP (lg+) ===== */
+  
+  /* Contenedor fluido para desktop */
+  .container-custom {
+    width: min(100% - 4rem, 1600px);
+    margin-inline: auto;
+    padding-inline: clamp(2rem, 6vw, 4rem);
+  }
+  
+  /* Container fluid para desktop */
+  .container-fluid {
+    padding-inline: clamp(3rem, 8vw, 5rem);
+  }
+  
+  /* Container fluid optimizado para hero section */
+  .container-fluid.hero-container {
+    max-width: 1400px; /* Más ancho para desktop */
+    margin-inline: auto;
+  }
+  
+  /* Hero section - Ajustar proporción en desktop */
+  .hero-grid {
+    grid-template-columns: 3fr 2fr;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  
+  /* Texto más grande en desktop */
+  .hero-text h2 {
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+  
+  .hero-text p {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    line-height: 1.6;
+  }
+  
+  /* Cards grid - 3 columnas en desktop */
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(3rem, 6vw, 5rem);
+  }
+  
+  /* Imagen del hero - que ocupe toda la columna en desktop */
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+  }
+  
+  /* Imagen del hero - que ocupe todo el tamaño de la sección en desktop */
+  .hero-image .aspect-container {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+  }
+  
+  /* Para desktop: "Vive en libertad" en una sola línea */
+  .hero-text h2 br + :last-child {
+    display: inline;
+  }
+  
+  /* Espaciado más generoso en desktop */
+  .hero-text {
+    padding-right: clamp(3rem, 6vw, 4rem);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --container-padding: 3rem;
+  }
+  
+  /* ===== CORRECCIONES ESPECÍFICAS PARA DESKTOP GRANDE (xl+) ===== */
+  
+  /* Contenedor más ancho para pantallas grandes */
+  .container-custom {
+    width: min(100% - 5rem, 1800px);
+    padding-inline: clamp(3rem, 8vw, 5rem);
+  }
+  
+  /* Container fluid para desktop grande */
+  .container-fluid {
+    padding-inline: clamp(4rem, 10vw, 6rem);
+  }
+  
+  /* Cards grid - 4 columnas en desktop grande */
+  .cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(3.5rem, 7vw, 6rem);
+  }
+  
+  /* Hero section - Aprovechar mejor el espacio */
+  .hero-grid {
+    gap: clamp(1.5rem, 3vw, 2rem);
+  }
+  
+  /* Imagen del hero - más grande en pantallas grandes */
+  .hero-image {
+    max-width: 600px;
+  }
+
+  /* Imagen del hero - que ocupe toda la columna en desktop */
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+  }
+  
+  /* Para desktop grande: "Vive en libertad" en una sola línea */
+  .hero-text h2 br + :last-child {
+    display: inline;
+  }
+  
+  /* Imagen del hero - que ocupe todo el tamaño de la sección en desktop grande */
+  .hero-image .aspect-container {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --container-padding: 4rem;
+  }
+}
+
+/* ===== PREFERS-REDUCED-MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== DARK MODE (PREPARADO PARA FUTURO) ===== */
+@media (prefers-color-scheme: dark) {
+  /* Implementar cuando se necesite */
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
   }
 }

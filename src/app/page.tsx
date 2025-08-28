@@ -13,391 +13,453 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Header Rojo Oscuro */}
-      <div className="bg-[#4c0f2e] h-20 flex items-center justify-between px-6 relative">
-        <div className="flex items-center space-x-2">
+      {/* Header Principal Responsive */}
+      <header className="bg-cora-primary relative overflow-hidden min-h-screen">
+        {/* Imagen de fondo optimizada */}
+        <div className="absolute inset-0">
           <Image
-            src="/img/logo/logo.png"
-            alt="CoraWeb Logo"
-            width={48}
-            height={48}
-            className="w-12 h-12"
+            src="/img/header_principal.png"
+            alt=""
+            fill
+            className="object-cover object-center w-full h-full"
+            priority
+            fetchPriority="high"
+            decoding="async"
+            sizes="100vw"
+            quality={85}
           />
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
         
-        {/* Menú Hamburguesa */}
-        <div className="text-[#e0c3b5]">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-8 h-8 border-2 border-[#e0c3b5] rounded-full flex flex-col justify-center items-center space-y-1 hover:bg-[#e0c3b5] hover:text-[#4c0f2e] transition-colors duration-200"
-          >
-            <div className="w-4 h-0.5 bg-current"></div>
-            <div className="w-4 h-0.5 bg-current"></div>
-            <div className="w-4 h-0.5 bg-current"></div>
-          </button>
-        </div>
-
-        {/* Menú Desplegable */}
-        {mobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-[#4c0f2e] border-t border-[#e0c3b5]/20 shadow-lg z-50">
-            <div className="px-6 py-4 space-y-3">
-              {NAVIGATION.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block text-[#e0c3b5] hover:text-white py-2 text-lg font-medium transition-colors duration-200 border-b border-[#e0c3b5]/10 last:border-b-0"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Hero Section con Imagen de Fondo - PANTALLA COMPLETA */}
-      <div className="relative h-screen">
-        <Image
-          src="/img/header_principal.png"
-          alt="Header Principal"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/30"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-[#e0c3b5] px-6">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mb-6 tracking-[0.2em] uppercase">
+        {/* Contenido del header */}
+        <div className="relative z-10 container-custom h-screen flex items-center justify-center">
+          <div className="text-center text-cora-accent">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light mb-4 sm:mb-6 tracking-[0.1em] sm:tracking-[0.2em] uppercase leading-tight">
               BIENVENIDA A
             </h1>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-normal tracking-[0.1em] uppercase">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-normal tracking-[0.05em] sm:tracking-[0.1em] uppercase leading-tight">
               CORA INVEST
             </h2>
+            <p className="mt-6 sm:mt-8 md:mt-10 text-lg sm:text-xl md:text-2xl max-w-4xl mx-auto opacity-90">
+              Empodera tu libertad financiera con claridad y confianza
+            </p>
           </div>
         </div>
-      </div>
+      </header>
 
-
-
-      {/* Nueva Sección Principal - Diseño de Dos Columnas PANTALLA COMPLETA */}
-      <div className="relative h-screen">
-        {/* Borde Superior */}
-        <div className="h-1 bg-[#4c0f2e]"></div>
+      {/* Sección Principal - Mobile First */}
+      <section className="relative bg-cora-bg">
+        <div className="h-1 bg-cora-primary"></div>
         
-        {/* Contenido Principal */}
-        <div className="flex flex-col lg:flex-row h-full">
-          {/* Columna Izquierda - Texto sobre fondo crema (60%) */}
-          <div className="lg:w-3/5 bg-[#ebe2db] flex items-center justify-center p-20">
-            <div className="max-w-4xl">
-              <h2 className="text-6xl md:text-7xl font-serif font-normal text-[#4c0f2e] mb-12 leading-tight">
+        <div className="container-fluid hero-container py-16 sm:py-20 md:py-24 lg:py-32" style={{paddingTop: 'var(--space-16)', paddingBottom: 'var(--space-16)'}}>
+          {/* Mobile: Stack vertical, Tablet+: Grid de 2 columnas */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-4 items-center hero-grid">
+            {/* Columna de texto (60% en desktop) */}
+            <div className="lg:col-span-3 hero-text" style={{textAlign: 'center !important'}}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-normal text-cora-primary leading-tight hero-title" style={{textAlign: 'center !important', margin: '0 auto', marginBottom: '5rem !important'}}>
                 Aprende.<br />
                 Invierte.<br />
-                Vive en libertad.
+                <span className="whitespace-nowrap">Vive en libertad.</span>
               </h2>
-              <p className="text-xl md:text-2xl text-[#4c0f2e] leading-relaxed font-normal">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-cora-primary leading-relaxed font-normal max-w-2xl lg:max-w-none">
                 CORA Invest es la plataforma que empodera a mujeres para tomar el control de su dinero con claridad, confianza y estrategias simples. Aquí aprenderás a invertir, organizar tus finanzas y construir hábitos sólidos, con herramientas prácticas y una comunidad que te acompaña paso a paso hacia tu libertad financiera.
               </p>
             </div>
-          </div>
-          
-          {/* Columna Derecha - Imagen de la mujer (40%) */}
-          <div className="lg:w-2/5 h-full relative overflow-hidden">
-            <Image
-              src="/img/foto_principal.png"
-              alt="Mujer con taza de café"
-              fill
-              className="object-cover object-left"
-              priority
-              sizes="(max-width: 1024px) 100vw, 40vw"
-            />
+            
+            {/* Columna de imagen (40% en desktop) */}
+            <div className="lg:col-span-2 hero-image">
+              <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-square rounded-3xl overflow-hidden shadow-2xl aspect-container">
+                <Image
+                  src="/img/foto_principal.png"
+                  alt="Mujer empoderada con taza de café"
+                  fill
+                  className="object-cover object-center"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 40vw, 500px"
+                  quality={90}
+                />
+              </div>
+            </div>
           </div>
         </div>
         
-        {/* Borde Inferior */}
-        <div className="h-1 bg-[#4c0f2e]"></div>
-      </div>
+        <div className="h-1 bg-cora-primary"></div>
+      </section>
 
-      {/* Nueva Sección de Cursos - Fondo Burgundy PANTALLA COMPLETA */}
-      <div className="bg-[#4c0f2e] h-screen flex flex-col justify-center">
-        <div className="container mx-auto px-6">
-          {/* Título Principal */}
-          <div className="text-center mb-20">
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-serif font-normal text-[#ebe2db] mb-8">
+      {/* Sección de Cursos - Grid Responsive */}
+      <section className="bg-cora-primary min-h-screen flex items-center py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="container-custom">
+          {/* Título */}
+          <div className="text-center mb-16 sm:mb-20 md:mb-24 lg:mb-32">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-normal text-cora-accent mb-6 sm:mb-8 leading-tight">
               Comienza con lo esencial
             </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-cora-accent/80 max-w-3xl mx-auto">
+              Cursos diseñados específicamente para mujeres que quieren tomar el control de sus finanzas
+            </p>
           </div>
           
-          {/* Tarjetas de Cursos */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-            {/* Curso 1: MONEY BASICS */}
-            <div className="bg-[#ebe2db] rounded-3xl overflow-hidden shadow-xl">
-              <div className="relative h-64">
+          {/* Grid de cursos responsive usando card-list */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 mb-16 sm:mb-20 md:mb-24 lg:mb-32 cards-grid">
+            {/* Curso 1: MONEY BASICS - Izquierda en desktop */}
+            <div className="group bg-cora-bg rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 lg:order-1">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/img/img_principal_money_basics.jpg"
-                  alt="Money Basics"
+                  alt="Curso Money Basics - Fundamentos de finanzas personales"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
-              <div className="p-8 text-center">
-                <h3 className="text-2xl font-normal text-[#2d161e]">MONEY BASICS</h3>
+              <div className="p-6 sm:p-8 text-center">
+                <h3 className="text-xl sm:text-2xl font-normal text-cora-text mb-4">MONEY BASICS</h3>
+                <p className="text-cora-text-secondary text-sm sm:text-base mb-6">
+                  Aprende los fundamentos de las finanzas personales
+                </p>
+                <Link 
+                  href="/mastery" 
+                  className="inline-flex items-center text-cora-primary hover:text-cora-primary/80 font-medium transition-colors duration-200"
+                >
+                  Ver más
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
+                </Link>
               </div>
             </div>
             
-            {/* Curso 2: INVEST LAB */}
-            <div className="bg-[#ebe2db] rounded-3xl overflow-hidden shadow-xl relative">
-              <div className="relative h-64">
+            {/* Curso 2: INVEST LAB - Centro en desktop */}
+            <div className="group bg-cora-bg rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative lg:order-2">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/img/img_principal_invest_lab.jpg"
-                  alt="Invest Lab"
+                  alt="Curso Invest Lab - Laboratorio de inversiones"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
                 />
-                {/* Sticker COMING SOON */}
-                <div className="absolute top-6 right-6 bg-[#e0c3b5] text-[#4c0f2e] px-4 py-2 rounded-full text-base font-medium shadow-lg">
-                  COMING SOON
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                {/* Badge Coming Soon */}
+                <div className="absolute top-4 right-4 bg-cora-accent text-cora-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium shadow-lg">
+                  PRÓXIMAMENTE
                 </div>
               </div>
-              <div className="p-8 text-center">
-                <h3 className="text-2xl font-normal text-[#2d161e]">INVEST LAB</h3>
+              <div className="p-6 sm:p-8 text-center">
+                <h3 className="text-xl sm:text-2xl font-normal text-cora-text mb-4">INVEST LAB</h3>
+                <p className="text-cora-text-secondary text-sm sm:text-base mb-6">
+                  Laboratorio práctico de inversiones
+                </p>
+                <span className="inline-flex items-center text-cora-text-muted font-medium">
+                  Disponible pronto
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
+                </span>
               </div>
             </div>
             
-            {/* Curso 3: EQUILIBRIO FINANCIERO */}
-            <div className="bg-[#ebe2db] rounded-3xl overflow-hidden shadow-xl relative">
-              <div className="relative h-64">
+            {/* Curso 3: EQUILIBRIO FINANCIERO - Abajo en móvil/tablet, derecha en desktop */}
+            <div className="group bg-cora-bg rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:col-span-2 lg:col-span-1 lg:order-3">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/img/img_principal_equilibrio_financiero.jpg"
-                  alt="Equilibrio Financiero"
+                  alt="Curso Equilibrio Financiero - Balance y estabilidad financiera"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw"
+                  loading="lazy"
                 />
-                {/* Sticker COMING SOON */}
-                <div className="absolute top-6 right-6 bg-[#e0c3b5] text-[#4c0f2e] px-4 py-2 rounded-full text-base font-medium shadow-lg">
-                  COMING SOON
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                {/* Badge Coming Soon */}
+                <div className="absolute top-4 right-4 bg-cora-accent text-cora-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium shadow-lg">
+                  PRÓXIMAMENTE
                 </div>
               </div>
-              <div className="p-8 text-center">
-                <h3 className="text-2xl font-normal text-[#2d161e]">EQUILIBRIO FINANCIERO</h3>
+              <div className="p-6 sm:p-8 text-center">
+                <h3 className="text-xl sm:text-2xl font-normal text-cora-text mb-4">EQUILIBRIO FINANCIERO</h3>
+                <p className="text-cora-text-secondary text-sm sm:text-base mb-6">
+                  Encuentra el balance perfecto en tus finanzas
+                </p>
+                <span className="inline-flex items-center text-cora-text-muted font-medium">
+                  Disponible pronto
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
+                </span>
               </div>
             </div>
           </div>
           
-          {/* Enlace Ver más cursos */}
-          <div className="text-right">
-            <a href="/mastery" className="inline-flex items-center text-[#ebe2db] hover:text-white font-serif text-4xl font-normal transition-colors duration-200">
+          {/* CTA Ver más cursos */}
+          <div className="text-center sm:text-right">
+            <Link 
+              href="/mastery" 
+              className="inline-flex items-center text-cora-accent hover:text-white font-serif text-2xl sm:text-3xl lg:text-4xl font-normal transition-colors duration-200 group"
+            >
               Ver más cursos
-              <span className="ml-4 text-5xl">»</span>
-            </a>
+              <span className="ml-2 sm:ml-4 text-3xl sm:text-4xl lg:text-5xl group-hover:translate-x-1 transition-transform duration-200">»</span>
+            </Link>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Nueva Sección Money Planners */}
-      <div className="bg-[#ebe2db] h-screen flex items-center">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-24">
-            {/* Columna Izquierda - Texto y Botón */}
-            <div className="lg:w-1/2">
-              <h2 className="text-6xl md:text-7xl lg:text-8xl font-serif font-normal text-[#2d161e] mb-12">
+      {/* Sección Money Planners */}
+      <section className="bg-cora-bg py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="container-custom py-12 sm:py-16 md:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-12 xl:gap-16 items-center hero-grid">
+            {/* Columna de texto */}
+            <div className="text-center lg:text-left order-2 lg:order-1 hero-text">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-normal text-cora-text mb-6 sm:mb-8 leading-tight">
                 Money Planners
               </h2>
-              <p className="text-xl md:text-2xl text-[#2d161e] leading-relaxed mb-12 font-normal">
+              <p className="text-lg sm:text-xl md:text-2xl text-cora-text leading-relaxed font-normal mb-8 sm:mb-10 md:mb-12 lg:mb-12 max-w-2xl lg:max-w-none">
                 Organiza tu dinero, visualiza tu progreso y alcanza tus metas con facilidad. CORA Money Planner te da plantillas y herramientas para que tus finanzas trabajen para ti, no al revés.
               </p>
-              <a href="/planners" className="inline-flex items-center bg-[#4c0f2e] text-[#ebe2db] px-10 py-6 rounded-full text-2xl font-normal hover:bg-[#2d161e] transition-colors duration-200">
-                Click aquí para ver más
-                <ArrowRightIcon className="ml-4 h-6 w-6" />
-              </a>
+              <Link 
+                href="/planners" 
+                className="inline-flex items-center bg-cora-primary text-cora-bg px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-sm sm:text-base md:text-lg font-normal hover:bg-cora-text transition-all duration-200 group shadow-lg hover:shadow-xl"
+              >
+                Ver más herramientas
+                <ArrowRightIcon className="ml-2 sm:ml-2.5 md:ml-3 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform duration-200" />
+              </Link>
             </div>
             
-            {/* Columna Derecha - Imagen con fondo */}
-            <div className="lg:w-1/2 bg-[#ebe2db] flex items-center justify-center p-8">
-              <Image
-                src="/img/img_templates.png"
-                alt="Money Planners"
-                width={450}
-                height={600}
-                className="object-contain"
-                priority
-              />
+            {/* Columna de imagen */}
+            <div className="order-1 lg:order-2 flex items-center justify-center p-6 sm:p-8 md:p-10 hero-image">
+              <div className="relative w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-lg xl:max-w-xl">
+                <Image
+                  src="/img/img_templates.png"
+                  alt="Plantillas y herramientas de Money Planners"
+                  width={450}
+                  height={600}
+                  className="object-contain w-full h-auto"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 450px"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Nueva Sección Money Mastery - Fondo Burgundy */}
-      <div className="bg-[#4c0f2e] h-screen flex flex-col justify-center">
-        <div className="container mx-auto px-6">
-          {/* Título Principal */}
-          <div className="text-center mb-20">
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-serif font-normal text-[#ebe2db] mb-8">
+      {/* Sección Money Mastery */}
+      <section className="bg-cora-primary py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="container-custom">
+          {/* Título */}
+          <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-normal text-cora-accent mb-6 sm:mb-8 leading-tight">
               Money Mastery
             </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-cora-accent/80 max-w-3xl mx-auto">
+              Cursos avanzados para dominar tus finanzas y alcanzar la libertad económica
+            </p>
           </div>
           
-          {/* Tarjetas de Cursos */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-            {/* Curso 1: Lanza tu proyecto */}
-            <div className="bg-[#ebe2db] rounded-3xl overflow-hidden shadow-xl relative">
-              <div className="relative h-64">
+          {/* Grid de cursos avanzados usando card-list */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 mb-12 sm:mb-16 md:mb-20 cards-grid">
+            {/* Curso 1: Lanza tu proyecto - Izquierda en desktop */}
+            <div className="group bg-cora-bg rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 lg:order-1">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/img/img_principal_lanza_tu_proyecto.jpg"
-                  alt="Lanza tu proyecto"
+                  alt="Curso Lanza tu proyecto - Emprendimiento financiero"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
                 />
-                {/* Sticker COMING SOON */}
-                <div className="absolute top-6 right-6 bg-[#e0c3b5] text-[#4c0f2e] px-4 py-2 rounded-full text-base font-medium shadow-lg">
-                  COMING SOON
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div className="absolute top-4 right-4 bg-cora-accent text-cora-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium shadow-lg">
+                  PRÓXIMAMENTE
                 </div>
               </div>
-              <div className="p-8 text-center">
-                <h3 className="text-2xl font-normal text-[#2d161e]">LANZA TU PROYECTO</h3>
+              <div className="p-6 sm:p-8 text-center">
+                <h3 className="text-xl sm:text-2xl font-normal text-cora-text mb-4">LANZA TU PROYECTO</h3>
+                <p className="text-cora-text-secondary text-sm sm:text-base mb-6">
+                  Convierte tu idea en un negocio rentable
+                </p>
+                <span className="inline-flex items-center text-cora-text-muted font-medium">
+                  Disponible pronto
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
+                </span>
               </div>
             </div>
             
-            {/* Curso 2: Finanzas a los 40+ */}
-            <div className="bg-[#ebe2db] rounded-3xl overflow-hidden shadow-xl relative">
-              <div className="relative h-64">
+            {/* Curso 2: FINANZAS A LOS 40+ - Centro en desktop */}
+            <div className="group bg-cora-bg rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative lg:order-2">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/img/img_principal_finanzas_40_+.jpg"
-                  alt="Finanzas a los 40+"
+                  alt="Curso Finanzas a los 40+ - Planificación financiera madura"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="lazy"
                 />
-                {/* Sticker COMING SOON */}
-                <div className="absolute top-6 right-6 bg-[#e0c3b5] text-[#4c0f2e] px-4 py-2 rounded-full text-base font-medium shadow-lg">
-                  COMING SOON
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div className="absolute top-4 right-4 bg-cora-accent text-cora-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium shadow-lg">
+                  PRÓXIMAMENTE
                 </div>
               </div>
-              <div className="p-8 text-center">
-                <h3 className="text-2xl font-normal text-[#2d161e]">FINANZAS A LOS 40+</h3>
+              <div className="p-6 sm:p-8 text-center">
+                <h3 className="text-xl sm:text-2xl font-normal text-cora-text mb-4">FINANZAS A LOS 40+</h3>
+                <p className="text-cora-text-secondary text-sm sm:text-base mb-6">
+                  Estrategias financieras para la madurez
+                </p>
+                <span className="inline-flex items-center text-cora-text-muted font-medium">
+                  Disponible pronto
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
+                </span>
               </div>
             </div>
             
-            {/* Curso 3: Vivienda y Finanzas */}
-            <div className="bg-[#ebe2db] rounded-3xl overflow-hidden shadow-xl relative">
-              <div className="relative h-64">
+            {/* Curso 3: VIVIENDA Y FINANZAS - Abajo en móvil/tablet, derecha en desktop */}
+            <div className="group bg-cora-bg rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:col-span-2 lg:col-span-1 lg:order-3">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src="/img/img_principal_vivienda.jpg"
-                  alt="Vivienda y Finanzas"
+                  alt="Curso Vivienda y Finanzas - Compra inteligente de vivienda"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 33vw"
+                  loading="lazy"
                 />
-                {/* Sticker COMING SOON */}
-                <div className="absolute top-6 right-6 bg-[#e0c3b5] text-[#4c0f2e] px-4 py-2 rounded-full text-base font-medium shadow-lg">
-                  COMING SOON
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div className="absolute top-4 right-4 bg-cora-accent text-cora-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium shadow-lg">
+                  PRÓXIMAMENTE
                 </div>
               </div>
-              <div className="p-8 text-center">
-                <h3 className="text-2xl font-normal text-[#2d161e]">VIVIENDA Y FINANZAS</h3>
+              <div className="p-6 sm:p-8 text-center">
+                <h3 className="text-xl sm:text-2xl font-normal text-cora-text mb-4">VIVIENDA Y FINANZAS</h3>
+                <p className="text-cora-text-secondary text-sm sm:text-base mb-6">
+                  Compra inteligente y financiamiento óptimo
+                </p>
+                <span className="inline-flex items-center text-cora-text-muted font-medium">
+                  Disponible pronto
+                  <ArrowRightIcon className="ml-2 h-4 w-4" />
+                </span>
               </div>
             </div>
           </div>
           
-          {/* Enlace Ver más cursos */}
-          <div className="text-right">
-            <a href="/mastery" className="inline-flex items-center text-[#ebe2db] hover:text-white font-serif text-4xl font-normal transition-colors duration-200">
+          {/* CTA Ver más cursos */}
+          <div className="text-center sm:text-right">
+            <Link 
+              href="/mastery" 
+              className="inline-flex items-center text-cora-accent hover:text-white font-serif text-2xl sm:text-3xl lg:text-4xl font-normal transition-colors duration-200 group"
+            >
               Ver más cursos
-              <span className="ml-4 text-5xl">»</span>
-            </a>
+              <span className="ml-2 sm:ml-4 md:ml-6 text-3xl sm:text-4xl lg:text-5xl group-hover:translate-x-1 transition-transform duration-200">»</span>
+            </Link>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Nueva Sección Actualidad */}
-      <div className="bg-[#ebe2db] relative">
-        {/* Borde Superior */}
-        <div className="h-1 bg-[#4c0f2e]"></div>
-        
-        <div className="container mx-auto px-6 py-20">
-          {/* Título Principal */}
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-serif font-normal text-[#2d161e]">
-              Actualidad que conecta contigo
+      {/* Sección Actualidad Financiera */}
+      <section className="bg-cora-bg py-16 sm:py-20 md:py-24 lg:py-32">
+        <div className="container-custom">
+          {/* Título optimizado para responsive */}
+          <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-normal text-cora-text mb-6 sm:mb-8 leading-tight">
+              Actualidad
             </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-cora-text/80 max-w-3xl mx-auto">
+              Contenido relevante y actualizado sobre finanzas, inversiones y empoderamiento femenino
+            </p>
           </div>
           
-          {/* Contenido Principal - Dos Columnas */}
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            {/* Columna Izquierda - Imagen */}
-            <div className="lg:w-3/5">
-              <div className="relative h-96 lg:h-[500px]">
+          {/* Layout responsive optimizado */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-4 xl:gap-4 items-center">
+            {/* Columna de imagen - Mismo estilo que la primera sección pero ligeramente más pequeña en móvil/tablet */}
+            <div className="order-1 lg:order-1 hero-image">
+              <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-square rounded-3xl overflow-hidden shadow-2xl aspect-container max-w-[360px] sm:max-w-[400px] md:max-w-[440px] lg:max-w-none mx-auto lg:mx-0">
                 <Image
                   src="/img/img_principal_actualidad.jpg"
-                  alt="Mujer revisando smartphone"
+                  alt="Mujer revisando finanzas en dispositivos"
                   fill
-                  className="object-cover rounded-2xl"
+                  className="object-cover object-center"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 40vw, 500px"
+                  quality={90}
                 />
               </div>
             </div>
             
-            {/* Columna Derecha - Categorías */}
-            <div className="lg:w-2/5 space-y-8">
-              {/* Categoría 1 */}
-              <div className="border-b border-[#4c0f2e]/20 pb-6">
-                <button 
-                  onClick={() => alert('Esta categoría aún no tiene contenido disponible. ¡Próximamente!')}
-                  className="flex items-center justify-between w-full text-left hover:text-[#4c0f2e] transition-colors duration-200"
-                >
-                  <span className="text-2xl font-serif font-normal text-[#2d161e]">DINERO Y PAREJA</span>
-                  <span className="text-2xl text-[#4c0f2e]">»</span>
-                </button>
+            {/* Columna de categorías - Espaciado optimizado */}
+            <div className="order-2 lg:order-2 text-center lg:text-left">
+              <div className="space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-10">
+                {/* Categoría 1 */}
+                <div className="border-b border-cora-primary/20 pb-2 sm:pb-3 md:pb-4 lg:pb-6 xl:pb-8">
+                  <button 
+                    onClick={() => alert('Esta categoría aún no tiene contenido disponible. ¡Próximamente!')}
+                    className="flex items-center justify-center lg:justify-start w-full text-left hover:text-cora-primary transition-colors duration-200 group"
+                  >
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-serif font-normal text-cora-text group-hover:text-cora-primary">
+                      DINERO Y PAREJA
+                    </span>
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl text-cora-primary group-hover:translate-x-1 transition-transform duration-200 ml-2 sm:ml-3 md:ml-4">»</span>
+                  </button>
+                </div>
+                
+                {/* Categoría 2 */}
+                <div className="border-b border-cora-primary/20 pb-2 sm:pb-3 md:pb-4 lg:pb-6 xl:pb-8">
+                  <button 
+                    onClick={() => alert('Esta categoría aún no tiene contenido disponible. ¡Próximamente!')}
+                    className="flex items-center justify-center lg:justify-start w-full text-left hover:text-cora-primary transition-colors duration-200 group"
+                  >
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-serif font-normal text-cora-text group-hover:text-cora-primary">
+                      MAXIMIZA TU RIQUEZA
+                    </span>
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl text-cora-primary group-hover:translate-x-1 transition-transform duration-200 ml-2 sm:ml-3 md:ml-4">»</span>
+                  </button>
+                </div>
+                
+                {/* Categoría 3 - Texto unificado para todos los dispositivos */}
+                <div className="border-b border-cora-primary/20 pb-2 sm:pb-3 md:pb-4 lg:pb-6 xl:pb-8">
+                  <button 
+                    onClick={() => alert('Esta categoría aún no tiene contenido disponible. ¡Próximamente!')}
+                    className="flex items-center justify-center lg:justify-start w-full text-left hover:text-cora-primary transition-colors duration-200 group"
+                  >
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-serif font-normal text-cora-text group-hover:text-cora-primary">
+                      JUBILACIÓN INTELIGENTE
+                    </span>
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl text-cora-primary group-hover:translate-x-1 transition-transform duration-200 ml-2 sm:ml-3 md:ml-4">»</span>
+                  </button>
+                </div>
               </div>
               
-              {/* Categoría 2 */}
-              <div className="border-b border-[#4c0f2e]/20 pb-6">
-                <button 
-                  onClick={() => alert('Esta categoría aún no tiene contenido disponible. ¡Próximamente!')}
-                  className="flex items-center justify-between w-full text-left hover:text-[#4c0f2e] transition-colors duration-200"
+              {/* CTA Ver más artículos - Responsive */}
+              <div className="text-center lg:text-left mt-4 sm:mt-6 md:mt-8 lg:mt-10 xl:mt-12">
+                <Link 
+                  href="/tendencia" 
+                  className="inline-flex items-center text-cora-text hover:text-cora-primary font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal transition-colors duration-200 group"
                 >
-                  <span className="text-2xl font-serif font-normal text-[#2d161e]">MAXIMIZA TU RIQUEZA</span>
-                  <span className="text-2xl text-[#4c0f2e]">»</span>
-                </button>
-              </div>
-              
-              {/* Categoría 3 */}
-              <div className="border-b border-[#4c0f2e]/20 pb-6">
-                <button 
-                  onClick={() => alert('Esta categoría aún no tiene contenido disponible. ¡Próximamente!')}
-                  className="flex items-center justify-between w-full text-left hover:text-[#4c0f2e] transition-colors duration-200"
-                >
-                  <span className="text-2xl font-serif font-normal text-[#2d161e]">PREPARÁNDOTE PARA LA JUBILACIÓN</span>
-                  <span className="text-2xl text-[#4c0f2e]">»</span>
-                </button>
+                  Ver más artículos
+                  <span className="ml-2 sm:ml-3 md:ml-4 lg:ml-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl group-hover:translate-x-1 transition-transform duration-200">»</span>
+                </Link>
               </div>
             </div>
           </div>
-          
-          {/* Enlace Ver más artículos */}
-          <div className="text-right mt-16">
-            <a href="/tendencia" className="inline-flex items-center text-[#2d161e] hover:text-[#4c0f2e] font-serif text-3xl font-normal transition-colors duration-200">
-              Ver más artículos
-              <span className="ml-4 text-4xl">»</span>
-            </a>
-          </div>
-                </div>
-        
-        {/* Borde Inferior */}
-        <div className="h-1 bg-[#4c0f2e]"></div>
-      </div>
+        </div>
+      </section>
 
       {/* Footer CORA Invest */}
-      <div className="bg-[#4c0f2e] py-16">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-16">
+      <footer className="bg-cora-primary py-12 sm:py-16 md:py-20">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 sm:gap-16 md:gap-20 items-center">
             {/* Contacto */}
-            <div className="text-center">
-              <h3 className="text-2xl font-serif font-bold text-[#e0c3b5] uppercase mb-6">
-                CONTACT US
+            <div className="text-center lg:text-left">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-cora-accent uppercase mb-4 sm:mb-6 md:mb-8">
+                CONTÁCTANOS
               </h3>
-              <div className="flex items-center justify-center space-x-4">
-                <svg className="w-7 h-7 text-[#e0c3b5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center justify-center lg:justify-start space-x-3 sm:space-x-4 md:space-x-5">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cora-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span className="text-[#e0c3b5] text-lg">thecorainvest@gmail.com</span>
+                <a 
+                  href="mailto:thecorainvest@gmail.com" 
+                  className="text-cora-accent hover:text-white transition-colors duration-200 text-base sm:text-lg md:text-xl"
+                >
+                  thecorainvest@gmail.com
+                </a>
               </div>
             </div>
             
@@ -408,25 +470,36 @@ export default function Home() {
                 alt="CORA Invest Logo"
                 width={180}
                 height={180}
-                className="w-45 h-45"
+                className="w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48"
+                loading="lazy"
+                sizes="(max-width: 640px) 144px, (max-width: 768px) 160px, (max-width: 1024px) 176px, 192px"
               />
             </div>
             
             {/* Redes Sociales */}
-            <div className="text-center">
-              <h3 className="text-2xl font-serif font-bold text-[#e0c3b5] uppercase mb-6">
-                GET SOCIAL
+            <div className="text-center lg:text-right">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-cora-accent uppercase mb-4 sm:mb-6 md:mb-8">
+                SÍGUENOS
               </h3>
-              <div className="flex items-center justify-center space-x-4">
-                <svg className="w-7 h-7 text-[#e0c3b5]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center justify-center lg:justify-end space-x-3 sm:space-x-4 md:space-x-5">
+                <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cora-accent" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                 </svg>
-                <span className="text-[#e0c3b5] text-lg">Tag us in your photos!</span>
+                <span className="text-cora-accent text-base sm:text-lg md:text-xl">
+                  ¡Menciona tu experiencia!
+                </span>
               </div>
             </div>
           </div>
+          
+          {/* Copyright */}
+          <div className="border-t border-cora-accent/20 mt-12 sm:mt-16 pt-8 text-center">
+            <p className="text-cora-accent/80 text-sm sm:text-base">
+              © 2025 CORA Invest. Todos los derechos reservados. Empoderando mujeres hacia la libertad financiera.
+            </p>
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   )
 }
